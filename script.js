@@ -1,4 +1,3 @@
-// Remplace ce token par le tien
 const token = "74bc07e4d8ee43ad4e23dc671385dc4d9675b7748c8f72a32d6d124715275abc";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -6,22 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const result = document.getElementById("result");
   const historiqueDiv = document.getElementById("historique");
 
-  // Charger historique depuis localStorage
+ 
   let historique = JSON.parse(localStorage.getItem("meteoHistorique")) || [];
 
-  // Fonction pour sauvegarder l'historique
+ 
   function sauvegarderHistorique(entree) {
-    // Evite doublons exacts
+   
     historique = historique.filter(h => !(h.recherche === entree.recherche && h.nbJours === entree.nbJours && JSON.stringify(h.options) === JSON.stringify(entree.options)));
-    // Ajouter en début
+   
     historique.unshift(entree);
-    // Limite à 5
+   
     if (historique.length > 5) historique.pop();
     localStorage.setItem("meteoHistorique", JSON.stringify(historique));
     afficherHistorique();
   }
 
-  // Fonction d'affichage de l'historique
+ 
   function afficherHistorique() {
     if (historique.length === 0) {
       historiqueDiv.innerHTML = "<p>Aucune recherche précédente.</p>";
@@ -37,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <small>${h.nbJours} jour(s)</small>
       `;
       div.addEventListener("click", () => {
-        // Remplir le formulaire avec cet historique et lancer la recherche
+        
         document.getElementById("ville").value = h.recherche;
         document.getElementById("nb-jours").value = h.nbJours;
         document.getElementById("latitude").checked = h.options.latitude;
@@ -51,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Fonction centrale pour faire la recherche météo
+  
   async function lancerRecherche(ville, nbJours, infos) {
-    result.innerHTML = ""; // vide résultat précédent
+    result.innerHTML = ""; 
 
     if (!ville) {
       result.innerHTML = "<p>Veuillez entrer une ville ou un code postal.</p>";
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // Recherche commune
+      
       const resCommune = await fetch(`https://api.meteo-concept.com/api/location/cities?token=${token}&search=${ville}`);
       const dataCommune = await resCommune.json();
 
@@ -73,13 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const city = dataCommune.cities[0];
       const insee = city.insee;
 
-      // Appel API météo
+
       const resMeteo = await fetch(`https://api.meteo-concept.com/api/forecast/daily?token=${token}&insee=${insee}`);
       const dataMeteo = await resMeteo.json();
 
       const forecasts = dataMeteo.forecast.slice(0, nbJours);
 
-      // Construction du HTML affichage
+      
       let html = `
         <div class="carte-ville">
           <h2>${city.name} (${city.cp})</h2>
@@ -108,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       result.innerHTML = html;
 
-      // Sauvegarder dans historique
+      
       sauvegarderHistorique({ recherche: ville, nbJours, options: infos });
 
     } catch (error) {
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Quand formulaire soumis
+  
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -135,10 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
     lancerRecherche(ville, nbJours, infos);
   });
 
-  // Afficher l'historique au chargement
+  
   afficherHistorique();
 
-  // DARK MODE (optionnel, si tu veux garder ça)
+  
   const darkToggle = document.getElementById("dark-mode-toggle");
   darkToggle.addEventListener("change", () => {
     document.body.classList.toggle("dark-mode", darkToggle.checked);
