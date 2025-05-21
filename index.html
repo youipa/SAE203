@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Météo avec historique</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Météo Concept - Consultation</h1>
+
+  <label id="dark-mode-label">
+    <input type="checkbox" id="dark-mode-toggle" /> Mode sombre
+  </label>
+
+  <form id="meteo-form">
+    <label for="ville">Ville ou Code postal :</label>
+    <input type="text" id="ville" placeholder="Ex: Paris ou 75000" required />
+
+    <label for="nb-jours">Nombre de jours (1 à 7) :</label>
+    <select id="nb-jours" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5" selected>5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+
+    <fieldset>
+      <legend>Informations supplémentaires :</legend>
+      <label><input type="checkbox" id="latitude" /> Latitude</label>
+      <label><input type="checkbox" id="longitude" /> Longitude</label>
+      <label><input type="checkbox" id="pluie" /> Pluie (mm)</label>
+      <label><input type="checkbox" id="vent" /> Vent moyen (km/h)</label>
+      <label><input type="checkbox" id="direction" /> Direction du vent (°)</label>
+    </fieldset>
+
+    <button type="submit">Afficher la météo</button>
+  </form>
+
+  <section id="result"></section>
+
+  <section>
+    <h2>Historique des recherches</h2>
+    <div id="historique"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

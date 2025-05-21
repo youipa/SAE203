@@ -1,0 +1,140 @@
+body {
+  background-color: #f5f5f5;
+  color: #222;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+
+.carte-ville, .carte-meteo {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.carte-ville h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #0077cc;
+}
+
+.carte-meteo h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #005fa3;
+}
+
+.carte-meteo ul, .carte-ville ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0 0 0;
+}
+
+.carte-meteo ul li, .carte-ville ul li {
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+}
+
+/* Mode sombre */
+body.dark-mode {
+  background-color: #121212;
+  color: #ddd;
+}
+
+body.dark-mode .carte-ville,
+body.dark-mode .carte-meteo {
+  background-color: #222;
+  box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+}
+
+#dark-mode-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  user-select: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+body.dark-mode #dark-mode-label {
+  color: #ccc;
+}
+
+#dark-mode-toggle {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+/* Formulaire styles */
+form label {
+  display: block;
+  margin: 0.5rem 0 0.2rem 0;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form select {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+form fieldset {
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+}
+
+form fieldset legend {
+  font-weight: bold;
+}
+
+form button {
+  margin-top: 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+form button:hover {
+  background-color: #005fa3;
+}
+
+body.dark-mode form input[type="text"],
+body.dark-mode form select,
+body.dark-mode form fieldset {
+  border-color: #555;
+  background-color: #333;
+  color: #ddd;
+}
+
+body.dark-mode form button {
+  background-color: #005fa3;
+}
+
+body.dark-mode form button:hover {
+  background-color: #004080;
+}
+
+#historique {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  
